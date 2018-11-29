@@ -6,7 +6,7 @@ Ist es nicht eine staade Zeit? Nicht für Heraldus. Der Weihnachtswichtel hat al
 
 Jetzt kommen die Beiträge per Rentierpost und Brieftaube bei Heraldus an. Der Weihnachtsmann, das Christkind, der Schneemann, sogar Rudolf mit der roten Nase schicken Ihre Artikel ganz altmodisch auf die Reise. Leider ist der Transport nicht ganz abhörsicher. Damit Jack Frost die Texte nicht einfach austauschen kann, werden die Schriften verschlüsselt, ebenfalls altmodisch nach [Cäsars Art](https://de.wikipedia.org/wiki/Caesar-Verschl%C3%BCsselung).
 
-Und ist das noch nicht genug, sind die Schlüssel verloren gegangen. Niemand weiß, mit welcher Verschiebung die Artikel kodiert wurden. Nur eins ist sicher, sie wurden auf Deutsch geschrieben. Jetzt schlägt Deine Stunde.
+Und ist das noch nicht genug, sind die Schlüssel verloren gegangen. Niemand weiß, mit welcher Verschiebung die Artikel kodiert wurden. Nur eins scheint sicher, sie wurden auf Deutsch geschrieben. Jetzt schlägt Deine Stunde.
 
 ## Aufgabe
 
@@ -22,4 +22,4 @@ Analysiere den jeweiligen Text und übersetze ihn automatisch, damit _Das Weihna
 | RHk, phlq Ixvv.     | Oeh, mein Fuss.      |    3 Zeichen |
 | Sebur Jrvuanpugra!  | Frohe Weihnachten!   |   13 Zeichen |
 
-_Oeh, mein Fuss._ lautete im Original natürlich _Öh, mein Fuß._. Klingt komisch? Für Euch vielleicht, aber für ein Rentier kann das ein guter Gedanke sein. Viel Erfolg und ebenfalls gute Gedanken!
+_Oeh, mein Fuss._ lautete im Original natürlich _Öh, mein Fuß._ Klingt komisch? Für Euch vielleicht, aber für ein Rentier kann das ein guter Gedanke sein. Viel Erfolg und ebenfalls gute Gedanken!
