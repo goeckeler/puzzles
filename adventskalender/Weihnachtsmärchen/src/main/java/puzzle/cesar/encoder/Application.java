@@ -1,55 +1,29 @@
 package puzzle.cesar.encoder;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.io.FileUtils;
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Application application = new Application();
 		application.run(args);
 	}
 
-	public void run(String[] args) {
+	public void run(String[] args) throws IOException {
 		String text = "";
 		if (args.length == 0) {
-			System.out.println("Enter text which I am supposed to decode.\n");
+			System.out.println("Enter text which I am supposed to encode.\n");
 			text = readLine();
 			System.out.println("");
 		} else {
-			text = StringUtils.join(args, " ");
+			text = FileUtils.readFileToString(new File(args[0]), "UTF-8");
 		}
 
-		for (int shift = 0; shift < 26; ++shift) {
-          System.out.println(String.format("[%2d] %s", shift, decode(text, shift)));
-		}
-	}
-
-	public String decode(String text, int shift) {
-		StringBuilder code = new StringBuilder();
-		for (Character character : text.toCharArray()) {
-			if (isAlphabet(character)) {
-				Character base = isLower(character) ? 'a' : 'A';
-				int offset = character - base;
-				code.append((char)((offset < shift) ? character + 26 - shift : character - shift));
-			} else {
-				code.append(character);
-			}
-		}
-		return code.toString();
-	}
-	
-	private boolean isLower(Character character) {
-		return (character >= 'a' && character <= 'z');
-	}
-	
-	private boolean isUpper(Character character) {
-		return (character >= 'A' && character <= 'Z');
-	}
-	
-	private boolean isAlphabet(Character character) {
-		return isLower(character) || isUpper(character);
+		System.out.println(Cesar.encode(text));
 	}
 
 	@SuppressWarnings("resource")
@@ -57,5 +31,4 @@ public class Application {
 		Scanner console = new Scanner(System.in);
 		return console.nextLine();
 	}
-
 }

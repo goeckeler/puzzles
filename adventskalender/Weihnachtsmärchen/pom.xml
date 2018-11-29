@@ -35,7 +35,7 @@
     <assertj.version>3.2.0</assertj.version>
     <commons.lang.version>3.4</commons.lang.version>
     <commons.collections.version>4.0</commons.collections.version>
-    <commons.io.version>2.4</commons.io.version>
+    <commons.io.version>2.5</commons.io.version>
     <junit.version>4.12</junit.version>
     <junit.hamcrest.version>1.3</junit.hamcrest.version>
   </properties>
@@ -77,8 +77,8 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
-    
-	<!-- Apache utility libraries -->
+
+    <!-- Apache utility libraries -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -87,7 +87,12 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
-	</dependency>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>
@@ -100,11 +105,11 @@
       </dependency>
 
       <dependency>
-	      <groupId>org.apache.commons</groupId>
-	      <artifactId>commons-collections4</artifactId>
-	      <version>${commons.collections.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${commons.collections.version}</version>
       </dependency>
-      
+
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
@@ -216,7 +221,8 @@
                   <minimizeJar>true</minimizeJar>
                   <transformers>
                     <!-- add Main-Class to manifest file -->
-                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <transformer
+                      implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                       <mainClass>puzzle.cesar.encoder.Application</mainClass>
                     </transformer>
                   </transformers>
