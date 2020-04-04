@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import euler.p004.Euler4;
-
 public class Euler4Test
 {
   @Test

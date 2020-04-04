@@ -10,13 +10,11 @@ import java.util.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import euler.primes.Sieve;
-
 public class SieveTest
 {
   @Test
   public void testSieveOfEratosthenes() {
-    List<Long> primes20 = Sieve.listPrimes(20);
+    final List<Long> primes20 = Sieve.listPrimes(20);
     assertNotNull(primes20);
     assertEquals(8, primes20.size());
     assertTrue(primes20.contains(2L));
@@ -31,7 +29,7 @@ public class SieveTest
 
   @Test
   public void testSieveIterator() {
-    List<Long> primes20 = new Sieve(20).list();
+    final List<Long> primes20 = new Sieve(20).list();
     assertNotNull(primes20);
     assertEquals(8, primes20.size());
     assertTrue(primes20.contains(2L));
@@ -47,10 +45,10 @@ public class SieveTest
   @Test
   @Ignore
   public void testMaximum() {
-    int maximum = 100;
-    List<Long> primes = new Sieve(maximum).list();
+    final int maximum = 100;
+    final List<Long> primes = new Sieve(maximum).list();
     System.out.println("Found " + getIntegerInstance().format(primes.size()) + " prime numbers.");
-    for (Long prime : primes) {
+    for (final Long prime : primes) {
       System.out.println(getIntegerInstance().format(prime));
     }
     System.out.println("Listed " + getIntegerInstance().format(primes.size()) + " prime numbers.");
@@ -59,9 +57,9 @@ public class SieveTest
   @Test
   @Ignore
   public void testSumBelowTwoMillion() {
-    int maximum = 1999999;
+    final int maximum = 1999999;
     long sum = 0;
-    for (Long prime : new Sieve(maximum)) {
+    for (final Long prime : new Sieve(maximum)) {
       sum += prime;
     }
     System.out.println("Sum below two million of all primes: " + getIntegerInstance().format(sum));
@@ -70,13 +68,13 @@ public class SieveTest
   @Test
   @Ignore
   public void test10001stPrime() {
-    int count = 10001;
+    final int count = 10001;
     int maximum = count * 20;
     int size = 0;
 
     do {
       System.out.print("Searching until " + getIntegerInstance().format(maximum) + " ");
-      Sieve sieve = new Sieve(maximum);
+      final Sieve sieve = new Sieve(maximum);
       size = sieve.count();
       System.out.println("containing " + getIntegerInstance().format(size) + " primes.");
 
@@ -92,25 +90,23 @@ public class SieveTest
   /**
    * The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves
    * prime.
-   *
    * There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
-   *
    * How many circular primes are there below one million?
    */
   @Test
   @Ignore
   public void testCircularPrime() {
-    int maximum = 999999;
-    List<Long> primes = new Sieve(maximum).list();
-    List<Long> circulars = new ArrayList<Long>(maximum / 5);
+    final int maximum = 999999;
+    final List<Long> primes = new Sieve(maximum).list();
+    final List<Long> circulars = new ArrayList<>(maximum / 5);
     System.out.println("Checking " + primes.size() + " prime numbers.");
-    for (Long prime : primes) {
+    for (final Long prime : primes) {
       if (circulars.contains(prime)) continue;
 
       // test if all rotations are also primes
       boolean circular = true;
-      Set<Long> candidates = rotations(prime);
-      for (Long candidate : candidates) {
+      final Set<Long> candidates = rotations(prime);
+      for (final Long candidate : candidates) {
         if (candidate.equals(prime)) continue;
         if (!primes.contains(candidate)) {
           circular = false;
@@ -124,7 +120,7 @@ public class SieveTest
     }
 
     System.out.println("Found " + circulars.size() + " circular primes up to " + maximum);
-    for (Long number : circulars) {
+    for (final Long number : circulars) {
       System.out.println(number);
     }
     System.out.println("Found " + circulars.size() + " circular primes up to " + maximum);
@@ -181,17 +177,17 @@ public class SieveTest
 
     List<String> entries = null;
     for (int pos = 0; pos < text.length(); ++pos) {
-      String header = text.substring(pos, pos + 1);
-      String trailer = text.substring(0, pos) + text.substring(pos + 1);
+      final String header = text.substring(pos, pos + 1);
+      final String trailer = text.substring(0, pos) + text.substring(pos + 1);
 
-      List<String> permuted = permutations(trailer);
+      final List<String> permuted = permutations(trailer);
 
       if (entries == null) {
-        entries = new ArrayList<String>(text.length() * permuted.size());
+        entries = new ArrayList<>(text.length() * permuted.size());
       }
 
-      for (String trailed : permuted) {
-        StringBuilder entry = new StringBuilder(header);
+      for (final String trailed : permuted) {
+        final StringBuilder entry = new StringBuilder(header);
         entry.append(trailed);
         entries.add(entry.toString());
       }
@@ -202,8 +198,8 @@ public class SieveTest
 
   public static List<Integer> permutations(final Integer number) {
     List<String> permuted = permutations(number.toString());
-    List<Integer> numbers = new ArrayList<Integer>(permuted.size());
-    for (String item : permuted) {
+    final List<Integer> numbers = new ArrayList<>(permuted.size());
+    for (final String item : permuted) {
       numbers.add(Integer.valueOf(item));
     }
 
@@ -213,14 +209,14 @@ public class SieveTest
 
   public static Set<Long> rotations(final Long number) {
     int rotate = number.toString().length();
-    Set<Long> numbers = new HashSet<Long>();
+    final Set<Long> numbers = new HashSet<>();
 
     String circular = number.toString();
 
     numbers.add(number);
     while (rotate > 1) {
       --rotate;
-      String last = circular.substring(circular.length() - 1);
+      final String last = circular.substring(circular.length() - 1);
       circular = last + circular.substring(0, circular.length() - 1);
       numbers.add(Long.valueOf(circular).longValue());
     }
@@ -229,7 +225,7 @@ public class SieveTest
   }
 
   public static boolean palindrome(final int number) {
-    int reverse = Integer.valueOf(new StringBuilder().append(number).reverse().toString());
+    final int reverse = Integer.valueOf(new StringBuilder().append(number).reverse().toString());
     return number == reverse;
   }
 }

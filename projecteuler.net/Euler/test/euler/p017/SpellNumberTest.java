@@ -6,8 +6,6 @@ import java.text.NumberFormat;
 
 import org.junit.Test;
 
-import euler.p017.SpellNumber;
-
 public class SpellNumberTest
 {
   @Test
@@ -26,11 +24,11 @@ public class SpellNumberTest
   public void testWordCount() {
     int count = 0;
     for (int number = 1; number <= 1000; ++number) {
-      String spoken = SpellNumber.spell(number);
+      final String spoken = SpellNumber.spell(number);
       System.out.print(spoken);
 
       int letters = 0;
-      for (String word : spoken.split(" ")) {
+      for (final String word : spoken.split(" ")) {
         letters += word.length();
       }
 
