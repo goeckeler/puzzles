@@ -57,6 +57,54 @@ public class Totient
   }
 
   /**
+   * List all primes from 1 to the known maximum.
+   *
+   * @return all primes until and including maximum given
+   */
+  public int[] primes() {
+    return primes(2, maximum);
+  }
+
+  /**
+   * List all primes within the given range.
+   *
+   * @param lower the lowest number to include, must start at 2.
+   * @param upper the highest number to include, cannot be greater than maximum
+   * @return all primes within the given range which must be below or equal to maximum
+   */
+  public int[] primes(final int lower, final int upper) {
+    assert upper <= maximum;
+    assert lower > 1;
+    assert upper > lower;
+
+    final int[] primes = new int[Math.max(1, countPrimes(lower, upper))];
+
+    int index = 0;
+    for (int number = Math.max(2, lower); number <= Math.min(upper, maximum); ++number) {
+      if (isPrime(number)) {
+        primes[index++] = number;
+      }
+    }
+
+    return primes;
+  }
+
+  public int countPrimes(final int lower, final int upper) {
+    assert upper <= maximum;
+    assert lower > 0;
+    assert upper > lower;
+
+    int count = 0;
+    for (int number = Math.max(2, lower); number <= Math.min(upper, maximum); ++number) {
+      if (isPrime(number)) {
+        ++count;
+      }
+    }
+
+    return count;
+  }
+
+  /**
    * Compute all totients up to the upper number to preload calculation
    */
   private void computeTotients() {
