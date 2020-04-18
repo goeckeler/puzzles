@@ -95,4 +95,8 @@ public class PrimeFactors
 
     return primes;
   }
+
+  public static boolean isPrime(final Long number) {
+    return number > 1 && primeFactorsOf(number).size() <= 1;
+  }
 }
