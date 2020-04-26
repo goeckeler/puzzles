@@ -1,11 +1,13 @@
 package euler.utils;
 
 import static euler.utils.Utils.isqrt;
+import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -50,5 +52,13 @@ class IntegerSquareRootsTest
   })
   void shouldApproximateSquareRootsToLowerBound(final int expected, final int number) {
     assertEquals(expected, isqrt(number));
+  }
+
+  @Test
+  @Ignore
+  void shouldBeAccurate() {
+    for (int number = 1; number < Integer.MAX_VALUE; ++number) {
+      assertEquals(Math.round((Math.floor(sqrt(number)))), isqrt(number));
+    }
   }
 }

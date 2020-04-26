@@ -184,6 +184,8 @@ public class Utils
    * A faster replacement for (int)(java.lang.Math.sqrt(x)). Completely accurate for x < 2,147,483,648 (i.e. 2^31). See
    * <a href="http://atoms.alife.co.uk/sqrt/SquareRoot.java">http://atoms.alife.co.uk/</a> for credentials and more
    * details.
+   *
+   * Unfortunately there must be something wrong as 2.147.395.600 yields 46.341 and not 46.340.
    */
   public static int isqrt(final int x) {
     int xn;
