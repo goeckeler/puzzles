@@ -8,20 +8,12 @@ import java.util.List;
 public class MagicSquareTest
 {
     @Test
-    public void shouldDisplayTwoByTwo() {
-        MagicSquare square = new MagicSquare(2);
-        assertEquals("  1  2\n  3  4\n", square.toString(List.of(1,2,3,4)));
+    public void shouldSolveSquareWithSizeOne() {
+        assertEquals("  1\n", new MagicSquare(1).toString());
     }
-
+ 
     @Test
-    public void shouldDisplayMissingElements() {
-        MagicSquare square = new MagicSquare(2);
-        assertEquals("  1  2\n  3  -\n", square.toString(List.of(1,2,3)));
-    }
-
-    @Test
-    public void shouldDisplayEmptySquare() {
-        MagicSquare square = new MagicSquare(2);
-        assertEquals("  -  -\n  -  -\n", square.toString(List.of()));
+    public void shouldSolveSquareWithSizeThree() {
+        assertEquals("  2  7  6\n  9  5  1\n  4  3  8\n", new MagicSquare(3).toString());
     }
 }
