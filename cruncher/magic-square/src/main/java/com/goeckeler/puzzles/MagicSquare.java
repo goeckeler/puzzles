@@ -25,30 +25,55 @@ public class MagicSquare {
              );
     }
 
-    private boolean solve(int magic, List<Integer> candidate, Set<Integer> numbers) {
-        // we have a fully qualified solution candidate
-        if (candidate.size() == size * size) {
-            int sumDiagonalDown = 0;
-            int sumDiagonalUp = 0;
-            for (int row = 0; row < size; ++row) {
-                int sumRow = 0;
-                int sumCol = 0;
+    public boolean isValid() {
+        return sumUp(this.solution).stream().allMatch(n -> n == magic) && this.solution.size() == size * size;
+    }
 
-                sumDiagonalDown += candidate.get(row * size + row);
-                sumDiagonalUp += candidate.get(row * size + size - row - 1);
+    private Set<Integer> sumUp(List<Integer> candidate) {
+        if (candidate == null) return Set.of();
 
-                for (int col = 0; col < size; ++col) {
-                    sumRow += candidate.get(col * size + row);
-                    sumCol += candidate.get(row * size + col);
-                }
+        Set<Integer> sums = new HashSet<>(size + size + 2);
 
-                if (sumRow != magic || sumCol != magic) {
-                    return false;
-                }
+        int sumDiagonalDown = 0;
+        int sumDiagonalUp = 0;
+        for (int row = 0; row < size; ++row) {
+            int sumRow = 0;
+            int sumCol = 0;
+
+            sumDiagonalDown += valueAt(row * size + row, candidate);
+            sumDiagonalUp += valueAt(row * size + size - row - 1, candidate);
+
+            for (int col = 0; col < size; ++col) {
+                sumRow += valueAt(col * size + row, candidate);
+                sumCol += valueAt(row * size + col, candidate);
             }
 
-            if (sumDiagonalDown == magic && sumDiagonalUp == magic && solution == null) {
+            sums.add(sumRow);
+            sums.add(sumCol);
+        }
+
+        sums.add(sumDiagonalDown);
+        sums.add(sumDiagonalUp);
+
+        return sums;
+    }
+ 
+    private int valueAt(int index, List<Integer> list) {
+        if (index >= list.size()) return 1;
+        return list.get(index);
+    }
+
+    private boolean solve(int magic, List<Integer> candidate, Set<Integer> numbers) {
+        Set<Integer> sums = sumUp(candidate);
+
+        // we have a fully qualified solution candidate
+        if (candidate.size() == size * size) {
+            if (sums.stream().allMatch(n -> n == magic)) {
                 solution = List.copyOf(candidate);
+
+                System.out.println(this.toString(candidate));
+                System.out.println();
+
                 return true;
             }
 
@@ -72,7 +97,8 @@ public class MagicSquare {
     }
 
     private List<Integer> add(final List<Integer> list, final Integer number) {
-        List<Integer> copy = new ArrayList<>(list);
+        List<Integer> copy = new ArrayList<>(1 + list.size());
+        copy.addAll(list);
         copy.add(number);
         return copy;
     }
