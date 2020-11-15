@@ -16,4 +16,4 @@ public class MagicSquareTest
         MagicSquare square = new MagicSquare(3);
         assertTrue(square.isValid(), String.format("Unbalanced magic square\n%s", square.toString()));
     }
-}
+ }

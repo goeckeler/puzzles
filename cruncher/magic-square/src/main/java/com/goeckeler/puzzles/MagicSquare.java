@@ -1,5 +1,6 @@
 package com.goeckeler.puzzles;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,10 +12,13 @@ public class MagicSquare {
     private final int size;
     private final int magic;
     private List<Integer> solution;
+    private long attempts;
 
     public MagicSquare(int size) {
         this.size = size;
         this.magic = Arithmetic.sum(size * size) / size;
+
+        this.attempts = 0L;
 
         solve(magic, 
               List.of(),
@@ -29,7 +33,7 @@ public class MagicSquare {
         return sumUp(this.solution).stream().allMatch(n -> n == magic) && this.solution.size() == size * size;
     }
 
-    private Set<Integer> sumUp(List<Integer> candidate) {
+    public Set<Integer> sumUp(List<Integer> candidate) {
         if (candidate == null) return Set.of();
 
         Set<Integer> sums = new HashSet<>(size + size + 2);
@@ -64,19 +68,36 @@ public class MagicSquare {
     }
 
     private boolean solve(int magic, List<Integer> candidate, Set<Integer> numbers) {
+
         Set<Integer> sums = sumUp(candidate);
 
         // we have a fully qualified solution candidate
         if (candidate.size() == size * size) {
+            // progress bar
+
+            ++attempts;
+            if (attempts % 100 == 0) { 
+                System.err.print(attempts % 1000 == 0 ? "+" : ".");
+            }    
+            if (attempts % 10_000 == 0) {
+                System.err.println(String.format(" - %s", DecimalFormat.getIntegerInstance().format(attempts)));
+            }
+
             if (sums.stream().allMatch(n -> n == magic)) {
                 solution = List.copyOf(candidate);
 
+                System.out.println();
                 System.out.println(this.toString(candidate));
                 System.out.println();
 
                 return true;
             }
 
+            return false;
+        }
+
+        if (sums.stream().anyMatch(n -> n > magic)) {
+            // a partial solution muss always be less or equal to the magic number
             return false;
         }
 
