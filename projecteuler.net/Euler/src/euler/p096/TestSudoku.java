@@ -36,6 +36,20 @@ public class TestSudoku
     "000700093"
   };
 
+  public static final String[] blick = {
+    "000102000",
+    "002903700",
+    "061000390",
+
+    "910080025",
+    "000504000",
+    "530010076",
+
+    "049000610",
+    "006408900",
+    "000601000"
+  };
+
   public static final String[] multipleSolutions = {
     "007060002",
     "080900034",
@@ -53,6 +67,7 @@ public class TestSudoku
   public static void main(final String[] args) {
     show(test);
     show(pressewoche);
+    show(blick);
     show(multipleSolutions);
   }
 
